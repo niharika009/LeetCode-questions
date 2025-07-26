@@ -2,15 +2,18 @@ name: Daily LeetCode Sync
 
 on:
   schedule:
-    - cron: '30 16 * * *'  # Runs at 10:00 PM IST
-  workflow_dispatch:        # Allows manual trigger from GitHub UI
+    - cron: '0 16 * * *'  # Runs at 10 PM IST
+  workflow_dispatch:
+
+permissions:
+  contents: write  # 👈 REQUIRED TO ALLOW PUSHING
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -24,12 +27,13 @@ jobs:
       - name: Run fetch script
         env:
           LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
-        run: python scripts/fetch_leetcode.py
+        run: |
+          python scripts/fetch_leetcode.py
 
-      - name: Commit and Push Changes
+      - name: Commit and push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "📌 LeetCode sync: $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git commit -m "📌 LeetCode sync: $(date +'%Y-%m-%d')" || echo "No changes"
           git push
