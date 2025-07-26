@@ -2,7 +2,7 @@ import requests
 import os
 from datetime import datetime
 
-USERNAME = "niharika009"  # ✅ Your LeetCode username
+USERNAME = "NiharikaNashine"  # ✅ Your LeetCode username
 
 session = os.environ.get("LEETCODE_SESSION")
 if not session:
