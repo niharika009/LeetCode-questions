@@ -42,7 +42,7 @@ slug = sub["titleSlug"]
 timestamp = datetime.now().strftime('%Y-%m-%d')
 
 filename = f"{title}_{timestamp}.md"
-filepath = os.path.join(".", filename)
+filepath = os.path.join("questions", filename)
 
 with open(filepath, "w", encoding="utf-8") as f:
     f.write(f"# {sub['title']}\n")
