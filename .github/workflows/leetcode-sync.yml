@@ -32,8 +32,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "niharika009"
+          git config --global user.email "niharikanashine2004@gmail.com"
           git add .
           git commit -m "📌 LeetCode sync: $(date +'%Y-%m-%d')" || echo "No changes"
           git push
